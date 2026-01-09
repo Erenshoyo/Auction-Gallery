@@ -1,7 +1,7 @@
 import React from "react";
 import { IoIosHeartEmpty } from "react-icons/io";
 
-const Item = ({ item }) => {
+const Item = ({ item, handleFavorite }) => {
   const {
     //id,
     title,
@@ -27,8 +27,11 @@ const Item = ({ item }) => {
       <div className="col-span-2 font-semibold text-slate-700">
         {timeLeft} left
       </div>
-      <div className="col-span-1">
-        <IoIosHeartEmpty/>
+      <div
+        className="col-span-1 flex justify-center items-center"
+        onClick={() => handleFavorite(item)}
+      >
+        <IoIosHeartEmpty size={25} />
       </div>
     </div>
   );

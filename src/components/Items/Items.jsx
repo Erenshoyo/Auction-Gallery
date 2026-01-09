@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Item from "../Item/Item";
 import { IoIosHeartEmpty } from "react-icons/io";
 
-const Items = () => {
+const Items = ({handleFavorite}) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const Items = () => {
 
   // console.log(items)
   return (
-    <div className="pt-36 px-48 bg-slate-300 min-h-screen">
+    <div className="pt-36 px-48 bg-slate-100 min-h-screen">
       <h1 className="text-3xl">
         <span className="text-blue-950 font-semibold">Active Auctions:</span>{" "}
         {items.length} items
@@ -29,7 +29,7 @@ const Items = () => {
           </div>
 
           {items.map((item) => (
-            <Item key={item.id} item={item} />
+            <Item key={item.id} item={item} handleFavorite={handleFavorite}/>
           ))}
         </div>
         <div className="right-container bg-white rounded-2xl w-[30%] h-[90%]">
