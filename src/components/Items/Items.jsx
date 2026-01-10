@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Item from "../Item/Item";
 import { IoIosHeartEmpty } from "react-icons/io";
 
-const Items = ({handleFavorite}) => {
+const Items = ({ handleFavorite, favorite, handleRemoveFavorite }) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -29,21 +29,49 @@ const Items = ({handleFavorite}) => {
           </div>
 
           {items.map((item) => (
-            <Item key={item.id} item={item} handleFavorite={handleFavorite}/>
+            <Item key={item.id} item={item} handleFavorite={handleFavorite} favorite={favorite} />
           ))}
         </div>
         <div className="right-container bg-white rounded-2xl w-[30%] h-[90%]">
-          <div className=" flex flex-col justify-center items-center">
+          <div className="flex flex-col justify-center items-center">
             <div className="flex justify-center items-center gap-2 border-b border-slate-500 w-full py-5 text-[22px] text-blue-900 font-semibold">
               <IoIosHeartEmpty /> Favorite Items
             </div>
-            <div className=" flex flex-col justify-center items-center py-10 border-b w-full border-slate-500">
-              <span className="text-xl font-semibold">No favorites yet</span> <br />{" "}
-              <span className="text-center text-sm text-slate-600">
-                Click the heart icon on any item <br /> to add it to your favorites
-              </span>
+
+            {/* 2. CONDITIONAL RENDERING HERE */}
+            <div className="flex flex-col w-full p-4 gap-2">
+              {favorite.length === 0 ? (
+                <div className="flex flex-col justify-center items-center py-10">
+                  <span className="text-xl font-semibold">
+                    No favorites yet
+                  </span>
+                  <span className="text-center text-sm text-slate-600 mt-2">
+                    Click the heart icon on any item <br /> to add it to your
+                    favorites
+                  </span>
+                </div>
+              ) : (
+                favorite.map((fav, idx) => (
+                  <div key={idx} className="flex justify-between border-b border-slate-300 p-2">
+                    <img
+                      src={fav.image}
+                      className="w-10 h-10 rounded object-cover m-2"
+                      alt=""
+                    />
+                    <span className="font-semibold text-sm m-2">{fav.title}</span>
+                    <span className="text-blue-700 font-bold m-2">
+                      ${fav.currentBidPrice}
+                    </span>
+                    <button className="m-2" onClick={() => handleRemoveFavorite(fav.id)}>❌</button>
+                  </div>
+                ))
+              )}
             </div>
-            <div className="py-4 text-center">Total Bids Amount: $0000</div>
+
+            <div className="py-4 text-center border-t border-slate-500 w-full mt-4">
+              Total Bids Amount: $
+              {favorite.reduce((preSum, currentSum) => preSum + currentSum.currentBidPrice, 0)}
+            </div>
           </div>
         </div>
       </div>

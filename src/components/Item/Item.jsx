@@ -1,9 +1,9 @@
 import React from "react";
-import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeartEmpty, IoIosHeart } from "react-icons/io";
 
-const Item = ({ item, handleFavorite }) => {
+const Item = ({ item, handleFavorite, favorite }) => {
   const {
-    //id,
+    id,
     title,
     //description,
     currentBidPrice,
@@ -11,6 +11,8 @@ const Item = ({ item, handleFavorite }) => {
     //bidsCount,
     image,
   } = item;
+
+  const isFavorite = favorite?.some((f) => f.id === id);
   return (
     <div className="grid grid-cols-9 gap-4 p-4 items-center border-b border-slate-300 hover:bg-slate-50 transition-colors">
       <div className="col-span-4 flex items-center gap-4">
@@ -28,10 +30,14 @@ const Item = ({ item, handleFavorite }) => {
         {timeLeft} left
       </div>
       <div
-        className="col-span-1 flex justify-center items-center"
-        onClick={() => handleFavorite(item)}
+        onClick={() => !isFavorite && handleFavorite(item)}
+        className={`col-span-1 flex justify-center items-center ${
+          isFavorite
+            ? "text-red-500 cursor-not-allowed"
+            : "text-slate-700 cursor-pointer hover:text-red-500"
+        }`}
       >
-        <IoIosHeartEmpty size={25} />
+        {isFavorite ? <IoIosHeart size={25} /> : <IoIosHeartEmpty size={25} />}
       </div>
     </div>
   );

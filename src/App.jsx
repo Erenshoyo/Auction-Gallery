@@ -8,15 +8,30 @@ function App() {
   const [favorite, setFavorite] = useState([]);
 
   const handleFavorite = (item) => {
-    setFavorite([...favorite, item]);
-    console.log(favorite);
-  }
+    const isAdded = favorite.find((f) => f.id === item.id);
+
+    if (!isAdded) {
+      setFavorite([...favorite, item]);
+    } else {
+      alert("Item already added.");
+    }
+  };
+
+  const handleRemoveFavorite = (id) => {
+    const updatedList = favorite.filter((f) => f.id !== id);
+    setFavorite(updatedList);
+  };
+
   return (
     <div className="bg-slate-100">
       <Header />
       <Banner />
-      <Items handleFavorite={handleFavorite}/>
-      <Footer/>
+      <Items
+        handleFavorite={handleFavorite}
+        favorite={favorite}
+        handleRemoveFavorite={handleRemoveFavorite}
+      />
+      <Footer />
     </div>
   );
 }
