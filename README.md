@@ -1,16 +1,72 @@
-# React + Vite
+# 🏆 AuctionGallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**AuctionGallery** is a modern, responsive React web application built as a **course assignment**.  
+The goal of this project is to demonstrate practical understanding of **React fundamentals**, **component-based architecture**, **state management**, and **responsive UI design**.
 
-Currently, two official plugins are available:
+Users can browse auction items, add them to a favorites (watchlist), and see the total bid value of their selected items.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 📚 Assignment Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+This project was developed as part of the Programming Hero course to practice:
 
-## Expanding the ESLint configuration
+- React component structure
+- Props and state management
+- Conditional rendering
+- Array methods (`map`, `reduce`)
+- UI composition with Tailwind CSS
+- User interaction handling
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## ✨ Features
+
+### 🛍️ Browse Auctions
+- Displays auction items in a responsive grid
+- Each item includes an image, title, current bid price, and time remaining
+
+### ❤️ Favorites (Watchlist)
+- Add items to a favorites sidebar using the heart icon
+- Prevents duplicate additions
+- Remove items instantly using the ❌ button
+- Automatically calculates the **total bid amount**
+
+### 🔔 Notifications
+- Real-time feedback using **react-toastify**
+- Success and error messages for user actions
+
+### 📱 Responsive Design
+- Fully responsive layout using **Tailwind CSS** and **DaisyUI*
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend Framework:** React.js  
+- **Styling:** Tailwind CSS  
+- **UI Components:** DaisyUI  
+- **Icons:** React Icons (`react-icons/io`, `react-icons/io5`)  
+- **Notifications:** React Toastify  
+- **Data Handling:** Fetch API (local JSON data)
+
+---
+
+## 📂 Project Structure
+
+```text
+src/
+├── components/
+│   ├── Banner/
+│   │   └── Banner.jsx       # Hero section
+│   ├── Footer/
+│   │   └── Footer.jsx       # Footer component
+│   ├── Header/
+│   │   └── Header.jsx       # Navigation bar
+│   ├── Item/
+│   │   └── Item.jsx         # Single auction item card
+│   └── Items/
+│       └── Items.jsx        # Data fetching, grid, and sidebar logic
+├── App.jsx                  # Main layout & shared state
+├── index.css                # Tailwind directives
+└── main.jsx                 # Application entry point
